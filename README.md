@@ -42,13 +42,13 @@ var my_project = cloz({}, {
 my_project.view = cloz({}, {
 	index: function(){
 		return '<p>index</p>';
-	}
+	},
 });
 ```
 
 ## Basic usage
 
-To create cloz (equal to closed object), a base object is needed.
+To create a cloz (equal to a closed object), a base object is needed.
 
 ```js
 // base object
@@ -61,13 +61,13 @@ var creature = cloz(base);
 var creation = cloz();
 ```
 
-To inherit cloz, just put it as base object.
+To inherit a cloz, just put it as a base object.
 
 ```js
 var mammal = cloz(creature);
 ```
 
-To extend base object, provide the second argument.
+To extend a base object, provide the second argument.
 
 ```js
 var man = cloz(mammal, {
@@ -76,7 +76,7 @@ var man = cloz(mammal, {
 });
 ```
 
-To get property of cloz, use `cloz.get()`.
+To get a property of cloz, use `cloz.get()`.
 
 ```js
 var miki = cloz(man, {
@@ -95,14 +95,14 @@ console.log(miki.get('name')); // => "Miki"
 console.log(miki.get('speak', 'ja')); // => "こんにちは。"
 ```
 
-To set property of cloz, use `cloz.set()`.
+To set a property of cloz, use `cloz.set()`.
 
 ```js
 miki.set('hair', 'brown');
 miki.set('laugh', function(){ return 'Haha.'; });
 ```
 
-If preset property's value is cloz, use `cloz.extend()` instead.
+If a preset property's value is a cloz, use `cloz.extend()` instead.
 
 ```js
 miki.extend('language', {
@@ -110,9 +110,9 @@ miki.extend('language', {
 	zh: '你好。',
 });
 
-console.log(miki.get('speak', 'ja')); // => "やあ。"
-console.log(miki.get('speak', 'en')); // => "Hi."
-console.log(miki.get('speak', 'zh')); // => "你好。"
+console.log(miki.get('speak', 'ja')); // => "やあ。" (overridden)
+console.log(miki.get('speak', 'en')); // => "Hi." (preset)
+console.log(miki.get('speak', 'zh')); // => "你好。" (new)
 ```
 
 ## How cloz works
@@ -183,7 +183,7 @@ Call the function whenever the cloz or its descendant cloz is created.
 
 ```js
 // output "created!" twice
-var parent = cloz({},{
+var parent = cloz({}, {
 	_cloz: function(){
 		console.log('created!');
 	}
@@ -197,7 +197,7 @@ Call the function when the cloz itself is created.
 
 ```js
 // output "created!" only once
-var parent = cloz({},{
+var parent = cloz({}, {
 	__cloz: function(){
 		console.log('created!');
 	}

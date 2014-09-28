@@ -165,6 +165,17 @@ Get the property's value or execute the function.
 
 Behave similarly to `get()` but return the default value if the property is not found.
 
+```js
+var app = cloz({}, {
+	platform: ['Android', 'iOS'],
+});
+
+var game = cloz(app);
+
+console.log(game.gain('os', ['Windows Phone'])); // => Array [ "Windows Phone" ]
+console.log(game.get('os')); // => Error: Cannot find property "os"
+```
+
 ### getAll()
 
 Get an object containing all properties and each value.

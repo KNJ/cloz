@@ -54,8 +54,11 @@ To create cloz (equal to closed object), a base object is needed.
 // base object
 var base = {};
 
-// Create new cloz
+// create new cloz
 var creature = cloz(base);
+
+// If the base object is empty and never shared, the following is OK.
+var creation = cloz();
 ```
 
 To inherit cloz, just put it as base object.
@@ -150,4 +153,54 @@ pochi.get('status').extend('feelings', {
 
 // pochi's method affected dog's property
 console.log(dog.get('status').get('feelings').get('happy')); // => ^w^
+```
+
+## API
+
+### get(property [, arguments ] ])
+
+Get the property's value or execute the function.
+
+### gain(property [, value = null [, arguments] ])
+
+Behave similarly to `get()` but return the default value if the property is not found.
+
+### getAll()
+
+Get an object containing all properties and each value.
+
+### set(property, value)
+
+Set the value to the property.
+
+### extend(property, extension)
+
+Extend cloz value.
+
+### extension._cloz(function)
+
+Call the function whenever the cloz or its descendant cloz is created.
+
+```js
+// output "created!" twice
+var parent = cloz({},{
+	_cloz: function(){
+		console.log('created!');
+	}
+});
+var child = cloz(parent);
+```
+
+### extension.__cloz(function)
+
+Call the function when the cloz itself is created.
+
+```js
+// output "created!" only once
+var parent = cloz({},{
+	__cloz: function(){
+		console.log('created!');
+	}
+});
+var child = cloz(parent); // => no output
 ```

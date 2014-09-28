@@ -10,8 +10,41 @@ If you want to read or write those properties, use 'get' or 'set' methods.
 ## Why use closed objects?
 
 If you use objects for both namespace and class and your project become larger, it is recommended to distingish between the two roles.
-Thus, functional objects, which is often used as class, should not show the tree of structure in case used as namespace.
+
+```js
+// use as namespace
+var my_project = {};
+my_project.model = {};
+my_project.controller = {};
+my_project.view = {};
+
+// use as class property
+my_project.contributors = ['someone', 'somebody'];
+my_project.view.index = function(){
+	return '<p>index</p>';
+};
+```
+
+Therefore, functional objects, which is often used as class, should not show the tree of structure in case used as namespace.
 A closed object has no information of the tree available, and you can manage objects more semantically.
+
+```js
+// cloz
+// my_project is available
+// but my_project.contributors is forbidden
+var my_project = cloz({}, {
+	contributors: ['someone', 'somebody'],
+});
+
+// cloz
+// my_project.view is available
+// but my_project.view.index is forbidden
+my_project.view = cloz({}, {
+	index: function(){
+		return '<p>index</p>';
+	}
+});
+```
 
 ## Basic usage
 

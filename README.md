@@ -161,7 +161,7 @@ console.log(dog.get('status').get('feelings').get('happy')); // => ^w^
 
 Get the property's value or execute the function.
 
-### gain(property [, value = null [, arguments] ])
+### gain(property [, value = null [, arguments ] ])
 
 Behave similarly to `get()` but return the default value if the property is not found.
 
@@ -186,7 +186,7 @@ Set the value to the property.
 
 ### extend(property, extension)
 
-Extend cloz value.
+Extend the cloz value of the property.
 
 ### extension._cloz(function)
 

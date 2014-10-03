@@ -2,9 +2,15 @@ var cloz = function(base, ex){
 	base = base || {};
 	var derived = {};
 	var o = Object.create(base);
+	var isStr = function(prop, type){
+		if (Object.prototype.toString.call(prop) === '[object String]') {
+			return true;
+		}
+		return false;
+	};
 
 	derived.get = function(prop){
-		if (typeof prop !== 'string') {
+		if (!isStr(prop)) {
 			throw new Error('The first argument of cloz.get() must be string.');
 		}
 		if (typeof o[prop] === 'undefined') {
@@ -27,7 +33,7 @@ var cloz = function(base, ex){
 		}
 	};
 	derived.gain = function(prop, val){
-		if (typeof prop !== 'string') {
+		if (!isStr(prop)) {
 			throw new Error('The first argument of cloz.gain() must be string');
 		}
 		if (typeof o[prop] === 'undefined') {
@@ -54,14 +60,14 @@ var cloz = function(base, ex){
 		return o;
 	};
 	derived.set = function(prop, val){
-		if (typeof prop !== 'string') {
+		if (!isStr(prop)) {
 			throw new Error('The first argument of cloz.set() must be string');
 		}
 		o[prop] = val;
 		return o[prop];
 	};
 	derived.extend = function(prop, obj){
-		if (typeof prop !== 'string') {
+		if (!isStr(prop)) {
 			throw new Error('The first argument of cloz.extend() must be string');
 		}
 		o[prop] = cloz(this.get(prop), obj);

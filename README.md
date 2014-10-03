@@ -184,6 +184,10 @@ Get an object containing all properties and each value.
 
 Set the value to the property.
 
+### set(extension)
+
+Set the values to the properties using a key-value object.
+
 ### extend(property, extension)
 
 Extend the cloz value of the property.

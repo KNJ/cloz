@@ -2,8 +2,14 @@ var cloz = function(base, ex){
 	base = base || {};
 	var derived = {};
 	var o = Object.create(base);
-	var isStr = function(prop, type){
+	var isStr = function(prop){
 		if (Object.prototype.toString.call(prop) === '[object String]') {
+			return true;
+		}
+		return false;
+	};
+	var isObj = function(prop){
+		if (Object.prototype.toString.call(prop) === '[object Object]') {
 			return true;
 		}
 		return false;
@@ -60,11 +66,17 @@ var cloz = function(base, ex){
 		return o;
 	};
 	derived.set = function(prop, val){
-		if (!isStr(prop)) {
-			throw new Error('The first argument of cloz.set() must be string');
+		if (isStr(prop)) {
+			o[prop] = val;
+			return o[prop];
 		}
-		o[prop] = val;
-		return o[prop];
+		if (isObj(prop)) {
+			for (var p in prop) {
+				o[p] = prop[p];
+			}
+			return prop;
+		}
+		throw new Error('The first argument of cloz.set() must be string');
 	};
 	derived.extend = function(prop, obj){
 		if (!isStr(prop)) {

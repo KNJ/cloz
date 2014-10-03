@@ -76,7 +76,7 @@ var cloz = function(base, ex){
 			}
 			return prop;
 		}
-		throw new Error('The first argument of cloz.set() must be string');
+		throw new Error('The first argument of cloz.set() must be string or object');
 	};
 	derived.extend = function(prop, obj){
 		if (!isStr(prop)) {

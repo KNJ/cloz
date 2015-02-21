@@ -1,3 +1,5 @@
+/*! @copyright (c) 2015 KNJ | THE MIT License | https://github.com/KNJ/cloz/blob/master/LICENSE */
+
 var cloz = function(base, ex){
 	base = base || {};
 	var derived = {};

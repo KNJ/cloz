@@ -135,7 +135,7 @@ console.log(miki_clone.get('name')); // => "Cloned Miki" (referred to miki_clone
 console.log(miki_clone.get('hair')); // => "black" (referred to miki)
 ```
 
-You shoud **not** deep-nested cloz (3 level or more) becase that can unexpectedly affect the base object as below.
+You shoud **not** create deep-nested cloz (3 level or more) becase that can unexpectedly affect the base object as below.
 
 ```js
 var dog = cloz(mammal, {
@@ -157,7 +157,7 @@ console.log(dog.get('status').get('feelings').get('happy')); // => ^w^
 
 ## API
 
-### get(property [, arguments ] ])
+### get(property [, arguments ])
 
 Get the property's value or execute the function.
 

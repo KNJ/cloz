@@ -5,16 +5,10 @@ var cloz = function(base, ex){
 	var derived = {};
 	var o = Object.create(base);
 	var isStr = function(prop){
-		if (Object.prototype.toString.call(prop) === '[object String]') {
-			return true;
-		}
-		return false;
+		return Object.prototype.toString.call(prop) === '[object String]';
 	};
 	var isObj = function(prop){
-		if (Object.prototype.toString.call(prop) === '[object Object]') {
-			return true;
-		}
-		return false;
+		return Object.prototype.toString.call(prop) === '[object Object]';
 	};
 
 	derived.get = function(prop){
